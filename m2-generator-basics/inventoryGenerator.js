@@ -7,3 +7,11 @@ function* inventoryGenerator() {
 const inventory = inventoryGenerator();
 console.log(inventory.next().value); // Smartphone
 console.log(inventory.next().value); // Tablet
+
+for (const item of inventoryGenerator()) {
+    console.log(item);
+}
+
+// Outputs: Smartphone, Tablet, Laptop
+const allItems = [...inventoryGenerator()];
+console.log(allItems); // Outputs: ['Smartphone', 'Tablet', 'Laptop']

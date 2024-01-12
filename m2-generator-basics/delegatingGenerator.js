@@ -18,3 +18,4 @@ const orderProcessing = orderProcessingGenerator();
 console.log(orderProcessing.next().value); // Order #1001 - regular
 console.log(orderProcessing.next().value); // Order #1002 - regular
 console.log(orderProcessing.next().value); // Order #1003 - express
+console.log(orderProcessing.next().value); // Order #1004 - express
