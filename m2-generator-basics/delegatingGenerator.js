@@ -13,7 +13,9 @@ function* orderProcessingGenerator() {
     yield* expressOrderGenerator();
 }
 
+
 const orderProcessing = orderProcessingGenerator();
+
 
 console.log(orderProcessing.next().value); // Order #1001 - regular
 console.log(orderProcessing.next().value); // Order #1002 - regular

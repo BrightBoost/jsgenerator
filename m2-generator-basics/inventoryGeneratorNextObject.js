@@ -1,7 +1,7 @@
 function* inventoryGenerator() {
     yield 'Smartphone';
     yield 'Tablet';
-    return 'Laptop';
+    yield 'Laptop';
 }
 
 const inventoryGen = inventoryGenerator();

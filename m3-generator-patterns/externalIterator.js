@@ -3,6 +3,7 @@ function* orderProcessingGenerator(orderId) {
     yield processPayment(orderId);
     yield updateOrderStatus(orderId, 'completed');
 }
+
 function handleGenerator(gen) {
     const iterator = gen();
     function step(value) {
@@ -13,17 +14,21 @@ function handleGenerator(gen) {
     }
     step();
 }
+
 // Sample async functions used in the generator
 function checkInventory(orderId) {
     console.log(`Checking inventory for order ${orderId}`);
     return Promise.resolve(); // Simulate async operation
 }
+
 function processPayment(orderId) {
     console.log(`Processing payment for order ${orderId}`);
     return Promise.resolve(); // Simulate async operation
 }
+
 function updateOrderStatus(orderId, status) {
     console.log(`Updating order ${orderId} to status '${status}'`);
     return Promise.resolve(); // Simulate async operation
 }
+
 handleGenerator(() => orderProcessingGenerator(123));

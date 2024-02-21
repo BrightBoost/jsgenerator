@@ -13,7 +13,6 @@ const app = express();
 app.use(express.static(__dirname + '/public'));
 
 
-// lazy evaluation
 
 // A generator function that simulates processing a large dataset
 async function* processLargeDataset() {
@@ -48,7 +47,7 @@ app.get('/api/large-dataset', async (req, res) => {
 });
 
 
-//  Paginating large data sets 
+
 // Paginating large data sets 
 async function paginateProducts(pageSize, pageNumber = 1) {
     const db = await createConnection();
@@ -75,6 +74,14 @@ app.get('/api/products', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
+
+
+
+
+
+
+
 
 // Generators with databases or external APIs
 async function getFilteredProducts(db, filters, start, limit) {
@@ -117,7 +124,6 @@ async function* fetchProductsInBatches(db, filters, batchSize = 100) {
     }
 }
 
-
 async function writeProductsToCSV(db, filters, outputFilePath) {
     const ws = fs.createWriteStream(outputFilePath);
     const csvStream = fastcsv.format({ headers: true });
@@ -145,18 +151,15 @@ app.get('/api/backup-products-csv', async (req, res) => {
     res.send();
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
 // Advanced data streaming: realtime, data integrity
 // Set up WebSocket server to mimic real-time communication
 const wss = new WebSocket.Server({ port: 8080 });
-async function* processLargeDataset() {
+async function* handleLargeDataset() {
     // Simulate processing a large dataset in chunks
     for (let i = 0; i < 1000; i++) {
         let chunk = `Data chunk ${i}`;
         // Simulate some processing delay
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 10));
         yield chunk;
     }
 }
@@ -164,7 +167,7 @@ async function* processLargeDataset() {
 wss.on('connection', function connection(ws) {
     // Start processing and sending data when a client connects
     (async () => {
-        for await (const dataChunk of processLargeDataset()) {
+        for await (const dataChunk of handleLargeDataset()) {
             ws.send(dataChunk);
         }
     })();
@@ -175,3 +178,8 @@ console.log('WebSocket server started on ws://localhost:8080');
 wss.on('close', () => {
     clearInterval(interval);
 });
+
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

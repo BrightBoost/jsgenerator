@@ -1,15 +1,13 @@
 let isFetching = false;
 
-
 window.onload = () => {
-    const pageSize = 20; // Number of products to fetch per page
+    const pageSize = 25; // Number of products to fetch per page
     const productGen = productGenerator(pageSize);
     const scrollHandler = () => handleScroll(productGen);
 
     window.addEventListener('scroll', scrollHandler);
     loadMoreProducts(productGen, scrollHandler);
 };
-
 
 async function loadMoreProducts(productGen, scrollHandler) {
     if (isFetching) return;
@@ -52,7 +50,6 @@ function renderProducts(products) {
         container.appendChild(div);
     });
 }
-
 
 async function* productGenerator(pageSize) {
     let pageNumber = 1;

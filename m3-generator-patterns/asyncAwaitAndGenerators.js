@@ -9,6 +9,7 @@ async function* productStream() {
         }
     }
 }
+
 // Usage
 (async () => {
     for await (const product of productStream()) {

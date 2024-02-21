@@ -6,15 +6,19 @@ function* largeDataSetGenerator(size) {
 
 function processItem(item) {
     // Simulate some processing
-    return item * 2;
+    console.log(item);
+    return item ** item;
 }
 
-const dataSetGen = largeDataSetGenerator(1000000);
+function onClickButton() {
+    const dataSetGen = largeDataSetGenerator(1000000);
 
-//console.time('Generator Performance');
-let sum = 0;
-
-for (let num of dataSetGen) {
-    sum += processItem(num);
+    console.time('Generator Performance');
+    let sum = 0;
+    
+    for (let num of dataSetGen) {
+        sum += processItem(num);
+    }
+    console.timeEnd('Generator Performance');
 }
-//console.timeEnd('Generator Performance');
+

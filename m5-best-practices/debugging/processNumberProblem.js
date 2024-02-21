@@ -9,6 +9,7 @@ function* numberGenerator() {
 function processNumber(value) {
     number = value;
 }
+
 const gen = numberGenerator();
 let value = gen.next().value;
 console.log(value); // 1

@@ -4,9 +4,11 @@ function* inventoryGenerator() {
     yield 'Laptop';
 }
 
+
 const inventory = inventoryGenerator();
 console.log(inventory.next().value); // Smartphone
 console.log(inventory.next().value); // Tablet
+console.log(inventory.next().value); // Laptop
 
 for (const item of inventoryGenerator()) {
     console.log(item);
